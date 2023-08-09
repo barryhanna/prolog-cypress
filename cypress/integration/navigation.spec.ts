@@ -17,4 +17,11 @@ describe("Sidebar Navigation", () => {
     cy.get("nav").contains("Settings").click();
     cy.url().should("eq", "http://localhost:3000/dashboard/settings");
   });
+
+  it("is collapsible", () => {
+    cy.get("nav").contains("Collapse").click();
+    cy.get("nav").find("a").should("have.length", 5).eq(1).click();
+    cy.url().should("eq", "http://localhost:3000/dashboard/issues");
+    cy.get("nav").contains("Issues").should("not.exist");
+  });
 });
